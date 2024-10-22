@@ -45,14 +45,7 @@ class UserController {
       return res.status(400).json({
         error: 'User already exists',
       });
-    }
-
-    
-
-
-
-    // eslint-disable-next-line no-undef
-    console.log(userExists);
+    } 
 
     const user = await User.create({
       id: v4(),
