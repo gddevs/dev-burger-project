@@ -7,30 +7,27 @@ import User from '../models/User';
 class OrderController {
   
   async store(req, res) {
-    const schema = Yup.object().shape({
+    const schema = Yup.object({
       products: Yup.array()
+        .required()
         .of(
-          Yup.object().shape({
-            id: Yup.number().required('ID is required'),
-            quantity: Yup.number().required('Quantity is required'),
-          })
-        )
-         // Certifique-se de que a mensagem está configurada da forma esperada.
-        .min(1, 'At least one product is required'),
+          Yup.object({
+            id: Yup.number().required(),
+            quantity: Yup.number().required(),  
+          }),
+        ),
     });
     
-    
-    
     try { 
-      await schema.validate(req.body, { abortEarly: false });
+      schema.validateSync(req.body, { abortEarly: false });
     } catch (err) {
-        return res.status(400).json({ error: err.errors });
+      return res.status(400).json({ error: err.errors});
     }
     
     const { products } = req.body;
 
     
-    console.log(products)
+    
     const productsIds = products.map((product) => product.id);
 
     const findProducts = await Product.findAll({

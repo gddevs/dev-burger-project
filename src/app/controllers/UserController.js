@@ -15,7 +15,6 @@ class UserController {
 
   async store(req, res) {
     const schema = Yup.object({
-
       name: Yup.string().required(),
       email: Yup.string().email().required(),
       password: Yup.string().required().min(8),
