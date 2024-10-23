@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import './database';
 
 
+
 class App {
   constructor() {
     this.app = express();
@@ -16,9 +17,8 @@ class App {
   middlewares() {
     this.app.use(express.json());
     this.app.use(
-      '/product-file', 
       // eslint-disable-next-line no-undef
-      express.static(resolve(__dirname, '..', 'uploads')));
+      '/product-file', express.static(resolve(__dirname, '..', 'uploads')));
   }
 
   routes() {
