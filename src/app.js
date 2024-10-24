@@ -19,6 +19,9 @@ class App {
     this.app.use(
       // eslint-disable-next-line no-undef
       '/product-file', express.static(resolve(__dirname, '..', 'uploads')));
+    this.app.use(
+        // eslint-disable-next-line no-undef
+      '/categories-file', express.static(resolve(__dirname, '..', 'uploads')));
   }
 
   routes() {
