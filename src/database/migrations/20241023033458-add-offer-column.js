@@ -3,8 +3,8 @@
 /** @type {import('sequelize-cli').Migration} */
 // eslint-disable-next-line no-undef
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    
+  async up(queryInterface, Sequelize) {
+
     await queryInterface.addColumn('products', 'offer', {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
@@ -12,9 +12,9 @@ module.exports = {
     });
   },
 
-  async down (queryInterface) {
-   
-   await queryInterface.removeColumn('products', 'offer');
-     
+  async down(queryInterface) {
+
+    await queryInterface.removeColumn('products', 'offer');
+
   }
 };

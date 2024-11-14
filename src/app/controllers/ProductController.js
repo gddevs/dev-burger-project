@@ -16,7 +16,7 @@ class ProductController {
     try {
       schema.validateSync(req.body, { abortEarly: false });
     } catch (err) {
-      return res.status(400).json({ error: err.errors});
+      return res.status(400).json({ error: err.errors });
     }
 
     const { admin: isAdmin } = await User.findByPk(req.userId);
@@ -25,9 +25,9 @@ class ProductController {
       return res.status(401).json();
     }
 
-    const { filename: path }  = req.file;
+    const { filename: path } = req.file;
     const { name, price, category_id, offer } = req.body;
-    
+
     const product = await Product.create({
       name,
       price,
@@ -35,7 +35,7 @@ class ProductController {
       path,
       offer,
     });
-    
+
     return res.status(201).json(product);
   }
 
@@ -50,7 +50,7 @@ class ProductController {
     try {
       schema.validateSync(req.body, { abortEarly: false });
     } catch (err) {
-      return res.status(400).json({ error: err.errors});
+      return res.status(400).json({ error: err.errors });
     }
 
     const { admin: isAdmin } = await User.findByPk(req.userId);
@@ -65,8 +65,8 @@ class ProductController {
 
     if (!findProduct) {
       return res
-      .status(400)
-      .json({ error: 'Make sure your product ID is correct'});
+        .status(400)
+        .json({ error: 'Make sure your product ID is correct' });
     }
 
     let path;
@@ -74,9 +74,9 @@ class ProductController {
     if (req.file) {
       path = req.file.filename;
     }
-    
+
     const { name, price, category_id, offer } = req.body;
-    
+
     await Product.update(
       {
         name,
@@ -84,14 +84,14 @@ class ProductController {
         category_id,
         path,
         offer,
-      }, 
+      },
       {
         where: {
           id,
         }
       },
     );
-    
+
     return res.status(201).json();
   }
 
@@ -103,7 +103,7 @@ class ProductController {
           as: 'category',
           attributes: ['id', 'name'],
         },
-      ],   
+      ],
     });
 
     return res.json(products);

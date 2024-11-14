@@ -4,9 +4,9 @@
 // eslint-disable-next-line no-undef
 module.exports = {
 
-  async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('products', { 
-      id: { 
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('products', {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -36,11 +36,11 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    });  
+    });
   },
 
-  async down (queryInterface) {
+  async down(queryInterface) {
     await queryInterface.dropTable('products');
-    
+
   },
 };

@@ -7,13 +7,13 @@ class CategoryController {
   async store(req, res) {
     const schema = Yup.object({
       name: Yup.string().required(),
-      
+
     });
 
     try {
       schema.validateSync(req.body, { abortEarly: false });
     } catch (err) {
-      return res.status(400).json({ error: err.errors});
+      return res.status(400).json({ error: err.errors });
     }
 
     const { admin: isAdmin } = await User.findByPk(req.userId);
@@ -22,7 +22,7 @@ class CategoryController {
       return res.status(401).json();
     }
 
-    const { filename: path} = req.file;
+    const { filename: path } = req.file;
 
     const { name } = req.body;
 
@@ -33,29 +33,29 @@ class CategoryController {
     });
 
     if (categoryExists) {
-      return res.status(400).json({ error: 'Category already exists'});
+      return res.status(400).json({ error: 'Category already exists' });
     }
 
-    
-    
+
+
     const { id } = await Category.create({
       name,
       path,
     });
-    
+
     return res.status(201).json({ id, name });
 
   }
 
   async update(req, res) {
     const schema = Yup.object({
-      name: Yup.string(), 
+      name: Yup.string(),
     });
 
     try {
       schema.validateSync(req.body, { abortEarly: false });
     } catch (err) {
-      return res.status(400).json({ error: err.errors});
+      return res.status(400).json({ error: err.errors });
     }
 
     const { admin: isAdmin } = await User.findByPk(req.userId);
@@ -70,8 +70,8 @@ class CategoryController {
 
     if (!categoryExists) {
       return res
-      .status(400)
-      .json({ message: 'Make sure your category ID is correct'});
+        .status(400)
+        .json({ message: 'Make sure your category ID is correct' });
     }
 
     let path;
@@ -88,27 +88,27 @@ class CategoryController {
           name,
         },
       });
-  
-      if (categoryNameExists) {
-        return res.status(400).json({ error: 'Category already exists'});
+
+      if (categoryNameExists && categoryNameExists.id != id) {
+        return res.status(400).json({ error: 'Category already exists' });
       }
     }
 
     await Category.update({
       name,
       path,
-    }, 
-    {
-      where: {
-        id,
-      },
     },
-  );
-    
+      {
+        where: {
+          id,
+        },
+      },
+    );
+
     return res.status(200).json();
 
   }
-  
+
   async index(req, res) {
     const categories = await Category.findAll();
 

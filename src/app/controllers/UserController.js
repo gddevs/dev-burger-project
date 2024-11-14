@@ -44,7 +44,7 @@ class UserController {
       return res.status(400).json({
         error: 'User already exists',
       });
-    } 
+    }
 
     const user = await User.create({
       id: v4(),

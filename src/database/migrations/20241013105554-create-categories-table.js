@@ -4,9 +4,9 @@
 /** @type {import('sequelize-cli').Migration} */
 // eslint-disable-next-line no-undef
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('categories', { 
-      id: { 
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('categories', {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -25,11 +25,11 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    });  
+    });
   },
 
-  async down (queryInterface) {
+  async down(queryInterface) {
     await queryInterface.dropTable('categories');
-    
+
   },
 };

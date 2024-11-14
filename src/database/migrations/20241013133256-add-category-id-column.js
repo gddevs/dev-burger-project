@@ -3,11 +3,11 @@
 /** @type {import('sequelize-cli').Migration} */
 // eslint-disable-next-line no-undef
 module.exports = {
-  async up (queryInterface, Sequelize) {
-     await queryInterface.addColumn('products', 'category_id', {
-       type: Sequelize.INTEGER,
-       references: { 
-        model: 'categories', 
+  async up(queryInterface, Sequelize) {
+    await queryInterface.addColumn('products', 'category_id', {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'categories',
         key: 'id',
       },
       onUpdate: 'CASCADE',
@@ -16,7 +16,7 @@ module.exports = {
     });
   },
 
-  async down (queryInterface) {
-     await queryInterface.removeColumn('products', 'category_id');
+  async down(queryInterface) {
+    await queryInterface.removeColumn('products', 'category_id');
   },
 };

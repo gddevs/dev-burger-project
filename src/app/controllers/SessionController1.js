@@ -24,32 +24,32 @@ class SessionController {
 
     if (!isValid) {
       return emailOrPasswordIncorrect();
-      
+
     }
-    
+
     const { email, password } = req.body;
 
-   
-    const user = await User.findOne({ 
-      where: { 
+
+    const user = await User.findOne({
+      where: {
         email,
-      }, 
+      },
     });
 
     if (!user) {
       return emailOrPasswordIncorrect();
-      
+
     }
 
-    const isSamePassword = await user.checkPassword(password);    
-    
+    const isSamePassword = await user.checkPassword(password);
+
     if (!isSamePassword) {
       return emailOrPasswordIncorrect();
-      
+
     }
 
-    return res.status(201).json({ 
-      id: user.id, 
+    return res.status(201).json({
+      id: user.id,
       name: user.name,
       email: user.email,
       admin: user.admin,
@@ -57,7 +57,7 @@ class SessionController {
         expiresIn: authConfig.expiresIn,
       }),
     });
-  } 
+  }
 }
 
 export default new SessionController();
