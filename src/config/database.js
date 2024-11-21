@@ -7,7 +7,7 @@ module.exports = {
   port: 5432,
   username: 'postgres',
   password: '1234',
-  database: 'DevBurger',
+  database: 'devburger',
   define: {
     timestamps: true,
     underscored: true,
