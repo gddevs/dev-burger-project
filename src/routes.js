@@ -10,7 +10,7 @@ import ProductController from './app/controllers/ProductController';
 import CategoryController from './app/controllers/CategoryController';
 import OrderController from './app/controllers/OrderController';
 
-const routes = new Router()
+const routes = new Router();
 
 const upload = multer(multerConfig);
 
