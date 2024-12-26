@@ -20,9 +20,9 @@ class App {
   middlewares() {
     this.app.use(express.json());
     // eslint-disable-next-line no-undef
-    this.app.use('/product-file',express.static(resolve(__dirname,'..','uploads')));
+    this.app.use('/product-file',express.static(resolve(__dirname,'..','uploads')))
     // eslint-disable-next-line no-undef
-    this.app.use('/category-file',express.static(resolve(__dirname,'..','uploads')));
+    this.app.use('/category-file',express.static(resolve(__dirname,'..','uploads')))
   }
 
   routes() {
